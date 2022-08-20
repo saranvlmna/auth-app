@@ -1,31 +1,42 @@
 const userService = require('../service/user')
-
-
 module.exports = {
 
     signupForm: (req, res, next) => {
-
+        try {
+            res.render('signup')
+        } catch (error) {
+            next(error)
+        }
     },
+
     loginForm: (req, res, next) => {
-
+        try {
+            res.render('login')
+        } catch (error) {
+            next(error)
+        }
     },
 
-    signup: async (req, res, next) => {
+    signup: async (req, res) => {
         try {
             const user = await userService.SignupUser(req.body)
-            console.log(user)
+            if (user) {
+                res.render('dashboard.hbs', { user: user })
+            }
         } catch (error) {
-            next(error)
+            res.render('signup', { logInError: error.message });
         }
     },
 
-    login: async(req, res, next) => {
+    login: async (req, res) => {
         try {
             const user = await userService.loginUser(req.body)
-            console.log(user)
+            if (user) {
+                res.render('dashboard.hbs', { user: user })
+            }
         } catch (error) {
-            next(error)
+            res.render('login', { logInError: error.message });
         }
-        
+
     }
 }

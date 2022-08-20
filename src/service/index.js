@@ -1,4 +1,4 @@
 module.exports = {
     userService: require('./user'),
-    PasswordService:require('./password')
+    PasswordService: require('./password')
 }

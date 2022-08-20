@@ -6,16 +6,22 @@ module.exports = {
     SignupUser: async (user) => {
         let existingUser
         existingUser = await User.findByEmail(user.email)
-
         if (existingUser) {
             throw new Error('User Already exists with this Email id')
         }
-        existingUser = await User.findByMobile(user.phone)
 
+        existingUser = await User.findByMobile(user.phone)
         if (existingUser) {
             throw new Error('User Already exists with this Mobile Number')
         }
         user.password = await passwordService.encrypt(user.password)
+
+        if (user.role == 'manager') {
+            user.isManager = true
+        }
+        else {
+            user.isDeveloper = true
+        }
 
         return await User.create(user)
     },

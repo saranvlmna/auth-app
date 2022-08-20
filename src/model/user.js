@@ -26,11 +26,11 @@ const schema = new Schema({
     },
     isManager: {
         type: Boolean,
-        default:false
+        default: false
     },
     isDeveloper: {
         type: Boolean,
-        default:false
+        default: false
     },
     CreatedAt: {
         type: Date,
@@ -38,4 +38,4 @@ const schema = new Schema({
     }
 })
 
-module.exports=model("User",schema)
+module.exports = model("User", schema)
