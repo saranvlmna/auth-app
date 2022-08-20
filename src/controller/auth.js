@@ -10,7 +10,7 @@ module.exports = {
 
     },
 
-    signup: async(req, res, next) => {
+    signup: async (req, res, next) => {
         try {
             const user = await userService.SignupUser(req.body)
             console.log(user)
@@ -18,7 +18,14 @@ module.exports = {
             next(error)
         }
     },
-    login: (req, res, next) => {
 
+    login: async(req, res, next) => {
+        try {
+            const user = await userService.loginUser(req.body)
+            console.log(user)
+        } catch (error) {
+            next(error)
+        }
+        
     }
 }

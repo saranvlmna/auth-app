@@ -6,7 +6,7 @@ const user = express.Router()
 // user.get('/login', controller.loginForm)
 
 user.post('/signup', controller.signup)
-// user.post('/login', controller.login)
+user.post('/login', controller.login)
 
 
 module.exports=user
