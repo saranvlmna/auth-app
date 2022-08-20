@@ -1,0 +1,26 @@
+{
+  "name": "authentication",
+  "version": "1.0.0",
+  "description": "# start  .  yarn  .  yarn run dev",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon --config nodemon.json"
+  },
+  "author": "Saranjith P",
+  "license": "ISC",
+  "dependencies": {
+    "convict": "^6.2.3",
+    "convict-format-with-validator": "^6.2.0",
+    "express": "^4.18.1",
+    "mongoose": "^6.5.2"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saranvlmna/auth-app.git"
+  },
+  "bugs": {
+    "url": "https://github.com/saranvlmna/auth-app/issues"
+  },
+  "homepage": "https://github.com/saranvlmna/auth-app#readme"
+}
