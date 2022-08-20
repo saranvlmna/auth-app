@@ -20,13 +20,22 @@ module.exports = {
         }
     },
 
+    dashboard: async (req, res, next) => {
+        try {
+            res.render('dashboard.hbs', { user: req.session.user })
+        } catch (error) {
+            next(error)
+        }
+    },
+
     signup: async (req, res) => {
         try {
             const user = await userService.SignupUser(req.body)
             if (user) {
                 let image = req.files.image;
                 image.mv(filepath + user.id + '.jpg')
-                res.render('dashboard.hbs', { user: user })
+                req.session.user = user
+                res.redirect('/dashboard')
             }
         } catch (error) {
             res.render('signup', { logInError: error.message });
@@ -37,12 +46,17 @@ module.exports = {
         try {
             const user = await userService.loginUser(req.body)
             if (user) {
-                res.render('dashboard.hbs', { user: user })
+                req.session.user = user
+                res.redirect('/dashboard')
             }
         } catch (error) {
             res.render('login', { logInError: error.message });
         }
 
+    },
+    logout: (req, res) => {
+        req.session.destroy();
+        res.redirect('/')
     }
 }
 

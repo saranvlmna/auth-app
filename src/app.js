@@ -3,11 +3,13 @@ const { dbConfig } = require('./config')
 const authRouter = require('./router/auth')
 const path = require('path');
 const fileUpload = require('express-fileupload');
+const session = require('express-session');
 
 const app = express()
 
 dbConfig()
 
+app.use(session({ secret: 'saranvlmna' }))
 app.use(fileUpload());
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
