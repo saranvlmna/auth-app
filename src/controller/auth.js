@@ -1,4 +1,7 @@
 const userService = require('../service/user')
+const path = require('path')
+const filepath = path.join(__dirname, '../../public/')
+
 module.exports = {
 
     signupForm: (req, res, next) => {
@@ -21,6 +24,8 @@ module.exports = {
         try {
             const user = await userService.SignupUser(req.body)
             if (user) {
+                let image = req.files.image;
+                image.mv(filepath + user.id + '.jpg')
                 res.render('dashboard.hbs', { user: user })
             }
         } catch (error) {
@@ -40,3 +45,4 @@ module.exports = {
 
     }
 }
+
